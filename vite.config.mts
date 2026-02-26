@@ -32,7 +32,6 @@ export default defineConfig({
     },
     lib: {
       entry: './packages/index.ts',
-      formats: ['es']
     }
   },
   plugins: [

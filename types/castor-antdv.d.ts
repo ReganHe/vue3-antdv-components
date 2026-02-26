@@ -1,4 +1,4 @@
-import { App, ComputedRef } from 'vue'
+import { ComputedRef } from 'vue'
 import { Rule } from 'ant-design-vue/es/form/interface'
 import { FormProps } from 'ant-design-vue/es/form/Form'
 import { FormItemProps } from 'ant-design-vue/es/form/FormItem'
@@ -8,7 +8,7 @@ import { ButtonProps } from 'ant-design-vue/es/button/buttonTypes'
 import { validateOptions } from 'ant-design-vue/es/form/useForm'
 
 export interface CommonCommand {
-  text: string
+  text: string | ComputedRef<string>
   command: string
   loading?: boolean
   disableValidator?: Function
@@ -22,6 +22,9 @@ export interface SelectItem {
   value: string | number | boolean
   disabled?: boolean
   color?: string
+  dateRange?: string[]
+  xAxisdateFormat?: string
+  queryDateFormat?: string
 }
 
 /** 通用表格字段 */
@@ -34,7 +37,7 @@ export interface TableField {
     options?: Array<SelectItem>
     commands?: Array<CommonCommand>
     linkCommand?: string
-    componentKey?: string,
+    componentKey?: string
     subElementProps?: object
   }
 }
@@ -57,25 +60,25 @@ export interface QueryField {
 /** 通用表单字段 */
 export interface FormField {
   type:
-  | 'text'
-  | 'select'
-  | 'date'
-  | 'dateRange'
-  | 'time'
-  | 'timeRange'
-  | 'textArea'
-  | 'groupTitle'
-  | 'checkboxGroup'
-  | 'radioGroup'
-  | 'custom'
-  | 'upload'
-  | 'status'
-  | 'inputNumber'
-  | 'autocomplete'
-  | 'switch'
-  | 'space'
-  | 'image'
-  | 'default'
+    | 'text'
+    | 'select'
+    | 'date'
+    | 'dateRange'
+    | 'time'
+    | 'timeRange'
+    | 'textArea'
+    | 'groupTitle'
+    | 'checkboxGroup'
+    | 'radioGroup'
+    | 'custom'
+    | 'upload'
+    | 'status'
+    | 'inputNumber'
+    | 'autocomplete'
+    | 'switch'
+    | 'space'
+    | 'image'
+    | 'default'
   label: string
   dataField: string
   columnSpan: number
@@ -128,7 +131,7 @@ export interface FormFieldExtendProps {
 export interface CommonForm {
   loading?: boolean
   visible?: boolean
-  title?: string
+  title?: string | ComputedRef<string>
   rowFieldsCount?: number
   operateType: 'add' | 'view' | 'edit'
   model: any
@@ -149,7 +152,7 @@ export interface CommonForm {
 /** 通用表格 */
 export interface CommonTable {
   loading: boolean
-  title?: string
+  title?: string | ComputedRef<string>
   dataSource: Array<object>
   columns: ComputedRef<TableField[]>
   pagination: false | TablePaginationConfig
